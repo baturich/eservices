@@ -103,7 +103,7 @@ public class DBService {
             Session session = sessionFactory.openSession();
             Transaction transaction = session.beginTransaction();
             StudentsDAO dao = new StudentsDAO(session);
-            long id = dao.insertUser("Константин", "Батура", "Андреевич", "15.08.1994", "+38(093)566-39-08", "ТКМ", 1, 5, 3, 1, 2);
+            long id = dao.insertUser("Иван", "Иванов", "Иванович", "27.01.1970", "+38(066)666-66-66", "ТКМ", 1, 5, 3, 1, 2);
             transaction.commit();
             session.close();
             return id;
