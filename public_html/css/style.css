@@ -1,0 +1,142 @@
+.row div {
+    background: #fff;
+}
+
+body{
+background-color: #fdfcfb;
+background-image: url(../pic/fon2.jpg);
+background-size: cover;
+}
+
+img{
+max-width: 100%;
+height: auto;
+}
+
+.navbar-inverse .navbar-nav>li>a{
+text-transform: uppercase;
+font-size: 18px;
+color: #c0c0c0;
+}
+
+.navbar-inverse .navbar-nav>li.active-link>a{
+border-bottom: 1px solid #d4a20c;
+color: #dadada;
+}
+
+.navbar-inverse .navbar-nav:not(.icons)>li>a:hover{
+border-bottom: 1px solid #d4a20c;
+color: #c0c0c0;
+}
+
+header{
+margin: 100px 0 80px;
+}
+
+.menu .container{
+position: relative;
+}
+
+.globe{
+font-size: 25px;
+line-height: 50px;
+position: absolute;
+right: 20px;
+cursor: pointer;
+color: #c0c0c0;
+display: none;
+}
+
+.navbar-brand{
+padding-right: 80px;
+}
+
+.navbar-brand img{
+position: relative;
+top: -49px;
+}
+
+.menu{
+background-color: #48484a;
+}
+
+* {
+font-family: arial, helvetica, sans-serif;
+}
+
+.log{
+max-width: 500px;
+margin-bottom: 5px;
+}
+
+#id_yellow{
+font-size: 50px;
+color: yellow;
+}
+
+/*Medium devices, Descktops*/
+@media only screen and (max-width: 992px) {
+.icons{
+display: none;
+position: absolute;
+right: 30px;
+top: 40px;
+}
+.icons li{
+float: none;
+}
+.icons li a{
+padding: 5px;
+}
+.globe{
+display: block;
+}
+}
+
+@media only screen and (min-width: 993px) {
+.icons{
+display: block !important;
+}
+}
+
+@media only screen and (max-width: 767px) {
+.menu{
+padding: 0;
+}
+.navbar-inverse .navbar-nav>li.active-link>a{
+border: 0;
+color: #dadada;
+background-color: #fdfcfb;
+}
+.icons{
+	display: block !important;
+	position: relative;
+	right: 0;
+	top: 0;
+}
+.icons li{
+display: inline-block;
+}
+.navbar-brand img{
+	max-height: 50px;
+	max-width: 50px;
+	top: -15px;
+}
+.globe{
+display: none;
+}
+}
+
+
+.jumbotron {
+background-image: url("../pic/jumbotron_pic.jpg");
+background-size: cover;}
+
+.img-responsive{
+    width: 80px;
+    height: 80px;
+}
+
+.white-txt{
+    color: white;
+}

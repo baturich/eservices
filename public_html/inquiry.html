@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta fName="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Електронна довідка</title>
+    <script type="text/javascript">
+        var ws;
+
+        function init() {
+            ws = new WebSocket("ws://localhost:8080/eservice");
+            ws.onopen = function (event) {
+                alert("Соединение установлено");
+            }
+            ws.onmessage = function (event) {
+                <!--var $textarea = document.getElementById("messages");-->
+                <!--$textarea.value = $textarea.value + event.data + "\n";-->
+                alert("Получены данные: \n" + event.data);
+            }
+            ws.onclose = function (event) {
+                if (event.wasClean) {
+                    var s = "Соединение закрыто чисто \n";
+                } else {
+                    var s = "Обрыв соединения \n"; // например, "убит" процесс сервера
+                }
+                alert(s + 'Код: ' + event.code + ' причина: ' + event.reason);
+            }
+            ws.onerror = function(error) {
+              alert("Ошибка " + error.message);
+            }
+        };
+
+        function sendMessage() {
+
+            <!--var sFirstNameField = document.getElementById("basic-addon2");-->
+            <!--var userNameField = document.getElementById("username");-->
+            <!--var message = userNameField.value + ":" + messageField.value;-->
+
+            if(checkFields()) {
+                var formData = {
+                        sFirstName:$("#fName").val()
+                        , sLastName:$("#lName").val()
+                        , sOtchestvo:$("#otchestvo").val()
+                        , sBirthdate:$("#birthdate").val()
+                        , sMobilePhone:$("#mobilePhone").val()
+                        , sNapryam:$("#napryam").val()
+                        , iNNI:$("#nni").val()
+                        , iYear:$("#year").val()
+                        , iOKR:$("#okr").val()
+                        , iFormaNavch:$("#studyForm").val()
+                        , iBudget:$("#budget").val()
+                    };
+
+                var message = JSON.stringify(formData);
+                <!--alert(message);-->
+                ws.send(message);
+            }
+        }
+
+        function checkFields() {
+            if(($("#lName").val()).length == 0) {
+                alert('Заповніть поле прізвице');
+                return false;
+            }
+            if(($("#fName").val()).length == 0) {
+                alert('Заповніть поле ім\'я!');
+                return false;
+            }
+            if(($("#otchestvo").val()).length == 0) {
+                alert('Заповніть поле по-батькові!');
+                return false;
+            }
+            if(($("#birthdate").val()).length == 0) {
+                alert('Заповніть поле дата народження!');
+                return false;
+            }
+            if(($("#mobilePhone").val()).length != 17) {
+                alert('Заповніть поле номеру мобільного у форматі +380(ХХ)ХХХ-ХХ-ХХ!');
+                return false;
+            }
+            if(($("#napryam").val()).length == 0) {
+                alert('Укажіть напрям підготовки!');
+                return false;
+            }
+            <!--if(($("#napryam").val()).length == 0 || ($("#year").val()) < 0 || ($("#year").val()) > 7) {-->
+                <!--alert('Укажіть курс від 1 до 6!');-->
+                <!--return false;-->
+            <!--}-->
+            <!--if(!(($("#okr").val()) == "Бакалавр") && !(($("#okr").val()) == "Спеціаліст") && !(($("#okr").val()) == "Магістр")) {-->
+                <!--alert('Укажіть ОКР (Бакалавр/Спеціаліст/Магістр)!');-->
+                <!--return false;-->
+            <!--}-->
+            <!--if(!(($("#studyForm").val()) == "Денна") && !(($("#okr").val()) == "Заочна")) {-->
+                <!--alert('Укажіть форму начання (Денна/Заочна)!');-->
+                <!--return false;-->
+            <!--}-->
+            <!--if(!(($("#budget").val()) == "Бюджет") && !(($("#okr").val()) == "Контракт")) {-->
+                <!--alert('Укажіть бюджет (Бюджет/Контракт)!');-->
+                <!--return false;-->
+            <!--}-->
+
+            return true;
+        }
+    </script>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body onload="init();">
+    <header>
+        <nav class="navbar navbar-inverse menu">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html"><img src="pic/logo_centr.png" height="120" width="120"></a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html">Головна</a></li>
+                        <li class="active-link"><a href="inquiry.html">Довідка</a></li>
+                        <!--            <li><a href="support.html">support</a></li>
+                                    <li><a href="contact.html">contact</a></li>
+                        -->
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right icons">
+                        <li><a href="https://www.facebook.com/groups/286796871740491/?fref=ts"><img src="pic/logo_facebook.png" height="25" width="25" ></a></li>
+                        <li><a href="https://www.linkedin.com/groups/12036395"><img src="pic/logo_linkedin.png" height="25" width="25" ></a></li>
+                        <!--            <li><a href="https://pp.vk.me/c619927/v619927791/16b80/WgkCeYEPnpU.jpg"><img src="pic/logo_cat.png" height="25" width="25" ></a></li>-->
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+                <i class="glyphicon glyphicon-globe globe"></i>
+            </div><!-- /.container -->
+        </nav>
+    </header>
+
+
+
+
+
+    <div class="content">
+        <div class="slogan" align="center">
+            <div class="container log">
+                <h1>Отримання довідки з місця навчання</h1>
+            </div>
+            <div class="container log">
+                <h3>Для отримання, заповніть форму нижче.</h3>
+                <!--          <h5>Поля, отмеченные '*' обязательны для заполнения</h5>-->
+            </div>
+        </div>
+        <div class="col-lg-6">
+                <p><div class="input-group log container">
+                    <span class="input-group-addon" id="basic-addon1">Прізвище:</span>
+                    <input type="text" id="lName" class="form-control" placeholder="Введіть ваше прізвище тут" aria-describedby="basic-addon1">
+                </div>
+                <p><div class="input-group log container">
+                    <span class="input-group-addon" id="basic-addon2">Ім'я:</span>
+                    <input type="text" id="fName" class="form-control" placeholder="Введіть ваше ім'я тут" aria-describedby="basic-addon1">
+                </div>
+                <p><div class="input-group log container">
+                    <span class="input-group-addon" id="basic-addon3">По-батькові:</span>
+                    <input type="text" id="otchestvo" class="form-control" placeholder="Введіть ваше по-батькові тут" aria-describedby="basic-addon1">
+                </div>
+                <p><div class="input-group log container">
+                    <span class="input-group-addon" id="basic-addon4">Дата народження:</span>
+                    <input type="text" id="birthdate" class="form-control" placeholder="ДД.ММ.РРРР" aria-describedby="basic-addon1">
+                </div>
+                <p><div class="input-group log container">
+                    <span class="input-group-addon" id="basic-addon5">Мобільний телефон:</span>
+                    <input type="text" id="mobilePhone" class="form-control" placeholder="+38(0ХХ)ХХХ-ХХ-ХХ" aria-describedby="basic-addon1">
+                </div>
+                <p><div class="input-group log container">
+                    <span class="input-group-addon" id="basic-addon9">Напрям підготовки/спеціальність:</span>
+                    <input type="text" id="napryam" class="form-control" placeholder="напрям підготовки/спеціальність" aria-describedby="basic-addon1">
+                </div>
+                <p><div class="input-group log container">
+                    <span class="input-group-addon" id="basic-addon12">Місце потреби довідки:</span>
+                    <input type="text" class="form-control" placeholder="організація/підприємство/установа " aria-describedby="basic-addon1">
+                    <h5>з вказанням району/міста/населеного пункту</h5>
+                </div>
+        </div>
+        <div class="col-lg-6" >
+                <p><div class="input-group log container">
+                <span class="input-group-addon" id="basic-addon6">Курс:</span>
+                <select class="selectpicker" id="year">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                </select>
+                <!--<input type="text" id="year" class="form-control" placeholder="Введіть ваш курс тут" aria-describedby="basic-addon1">-->
+            </div>
+                <p><div class="input-group log container">
+                    <span class="input-group-addon" id="basic-addon7">ОКР:</span>
+                    <select class="selectpicker" id="okr">
+                        <option value="1">Бакалавр</option>
+                        <option value="2">Спеціаліст</option>
+                        <option value="3">Магістр</option>
+                    </select>
+                    <!--<input type="text" id="okr" class="form-control" placeholder="Бакалавр/спеціаліст/магістр" aria-describedby="basic-addon1">-->
+                </div>
+                <p><div class="input-group log container">
+                    <span class="input-group-addon" id="basic-addon8">ННІ:</span>
+                    <select class="selectpicker" id="nni">
+                        <option value="1">ННІ ІНФОКОМУНІКАЦІЙ ТА ПРОГРАМНОЇ ІНЖЕНЕРІЇ</option>
+                        <option value="2">ННІ ЕКОНОМІКИ ТА МЕНЕДЖМЕНТУ</option>
+                        <option value="3">ННІ РАДІО, ТЕЛЕБАЧЕННЯ ТА ІНФОРМАЦІЙНОЇ БЕЗПЕКИ</option>
+                        <option value="4">ННІ ПРОБЛЕМ ІНФОРМАЦІЙНОГО СУСПІЛЬСТВА</option>
+                        <option value="5">ННІ КОМП\'ЮТЕРНИХ ТЕХНОЛОГІЙ, АВТОМАТИЗАЦІЇ ТА ЛОГІСТИКИ</option>
+                        <option value="6">ІНСТИТУТ ЗАОЧНОГО НАВЧАННЯ</option>
+                    </select>
+                    <!--<input type="text" id="nni" class="form-control" placeholder="Введіть назву вашого ННІ тут" aria-describedby="basic-addon1">-->
+                </div>
+                <p><div class="input-group log container">
+                    <span class="input-group-addon" id="basic-addon11">Бюджет/контракт:</span>
+                    <select class="selectpicker" id="budget">
+                        <option value="1">Бюджет</option>
+                        <option value="2">Контракт</option>
+                    </select>
+                    <!--<input type="text" id="budget" class="form-control" placeholder="бюджет/контракт" aria-describedby="basic-addon1">-->
+                </div>
+                <p><div class="input-group log container">
+                    <span class="input-group-addon" id="basic-addon10">Форма навчання:</span>
+                    <select class="selectpicker" id="studyForm">
+                        <option value="1">Денна</option>
+                        <option value="2">Заочна</option>
+                    </select>
+                    <!--<input type="text" id="studyForm" class="form-control" placeholder="денна/заочна" aria-describedby="basic-addon1">-->
+                </div>
+        </div>
+
+        <div class="col-lg-12" align="left">
+            <p><div class="log container" align="center">
+                <button type="button" class="btn btn-default" onclick="sendMessage();">Отримати довідку</button>
+            </div>
+            <p><br></p>
+        </div>
+    </div>
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.js"></script>
+    <!--<script src="js/serviceScript.js"></script>-->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+
+</body>
+</html>
