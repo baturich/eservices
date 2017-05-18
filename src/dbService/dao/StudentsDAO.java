@@ -1,14 +1,10 @@
 package dbService.dao;
 
-import dbService.DBException;
 import dbService.dataSets.StudentsDataSet;
-import entity.Student;
+import eservice.entity.Student;
 import org.hibernate.*;
 import org.hibernate.criterion.Restrictions;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 

@@ -4,6 +4,7 @@ import dbService.DBException;
 import dbService.DBService;
 import dbService.dataSets.StudentsDataSet;
 import eservice.WebSocketInquiryServlet;
+import org.apache.log4j.PropertyConfigurator;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.HandlerList;
@@ -21,6 +22,9 @@ public class Main {
         ResourceHandler resource_handler = new ResourceHandler();
         resource_handler.setDirectoriesListed(true);
         resource_handler.setResourceBase("public_html");
+
+        String log4jConfPath = "log4j.properties";
+        PropertyConfigurator.configure(log4jConfPath);
 
         HandlerList handlers = new HandlerList();
         handlers.setHandlers(new Handler[]{resource_handler, context});

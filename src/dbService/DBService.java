@@ -2,7 +2,7 @@ package dbService;
 
 import dbService.dao.StudentsDAO;
 import dbService.dataSets.StudentsDataSet;
-import entity.Student;
+import eservice.entity.Student;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -18,7 +18,7 @@ import java.sql.SQLException;
 
 public class DBService {
     private static final String hibernate_show_sql = "true";
-    private static final String hibernate_hbm2ddl_auto = "update"; //create - чтоб затирать данные
+    private static final String hibernate_hbm2ddl_auto = "update"; //create - чтоб затирать данные; update
 
     private final SessionFactory sessionFactory;
 

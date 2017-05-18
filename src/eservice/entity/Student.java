@@ -1,4 +1,4 @@
-package entity;
+package eservice.entity;
 
 public interface Student {
 

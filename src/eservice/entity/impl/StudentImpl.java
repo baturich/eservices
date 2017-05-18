@@ -1,7 +1,7 @@
-package entity.impl;
+package eservice.entity.impl;
 
 
-import entity.Student;
+import eservice.entity.Student;
 
 public class StudentImpl implements Student {
     private String sFirstName, sLastName, sOtchestvo, sBirthdate, sMobilePhone, sNapryam;
