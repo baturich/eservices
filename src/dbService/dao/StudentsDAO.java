@@ -63,13 +63,14 @@ public class StudentsDAO {
         }
     }
 
+    @org.jetbrains.annotations.Nullable
     private StudentsDataSet getStudent(Student student, List<StudentsDataSet> students) {
         for(StudentsDataSet neededStudent : students)
             if(neededStudent.getlName().equals(student.getsLastName()))
                 if(neededStudent.getfName().equals(student.getsFirstName()))
                     if(neededStudent.getOtchestvo().equals(student.getsOtchestvo()))
                         if(neededStudent.getBirthdate().equals(student.getsBirthdate()))
-                            if(neededStudent.getMobilePhone().equals(student.getsMobilePhone()))
+//                            if(neededStudent.getMobilePhone().equals(student.getsMobilePhone()))
                                 if(neededStudent.getNapryam().equals(student.getsNapryam()))
                                     if(neededStudent.getnNI() == student.getiNNI())
                                         if(neededStudent.getYear() == student.getiYear())

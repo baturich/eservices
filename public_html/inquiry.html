@@ -51,6 +51,9 @@
                         , iOKR:$("#okr").val()
                         , iFormaNavch:$("#studyForm").val()
                         , iBudget:$("#budget").val()
+                        , sEmail:$("#email").val()
+                        , iSex:$("#sex").val()
+                        , sDestination:$("#destination").val()
                     };
 
                 var message = JSON.stringify(formData);
@@ -78,6 +81,14 @@
             }
             if(($("#mobilePhone").val()).length != 17) {
                 alert('Заповніть поле номеру мобільного у форматі +380(ХХ)ХХХ-ХХ-ХХ!');
+                return false;
+            }
+            if(($("#email").val()).length < 9) {
+                alert('Заповніть поле елетронної адреси!');
+                return false;
+            }
+            if(($("#destination").val()).length < 5) {
+                alert('Заповніть поле місця потреби довідки!');
                 return false;
             }
             if(($("#napryam").val()).length == 0) {
@@ -187,17 +198,29 @@
                     <input type="text" id="mobilePhone" class="form-control" placeholder="+38(0ХХ)ХХХ-ХХ-ХХ" aria-describedby="basic-addon1">
                 </div>
                 <p><div class="input-group log container">
+                    <span class="input-group-addon" id="basic-addon14">Електронна адреса:</span>
+                    <input type="text" id="email" class="form-control" placeholder="example@example.com" aria-describedby="basic-addon1">
+                </div>
+                <p><div class="input-group log container">
                     <span class="input-group-addon" id="basic-addon9">Напрям підготовки/спеціальність:</span>
                     <input type="text" id="napryam" class="form-control" placeholder="напрям підготовки/спеціальність" aria-describedby="basic-addon1">
                 </div>
                 <p><div class="input-group log container">
                     <span class="input-group-addon" id="basic-addon12">Місце потреби довідки:</span>
-                    <input type="text" class="form-control" placeholder="організація/підприємство/установа " aria-describedby="basic-addon1">
-                    <h5>з вказанням району/міста/населеного пункту</h5>
+                    <input type="text" id="destination" class="form-control" placeholder="в родовому відмінку" aria-describedby="basic-addon1">
+                    <h5>організація/підприємство/установа з вказанням району/міста/населеного пункту</h5>
                 </div>
         </div>
         <div class="col-lg-6" >
-                <p><div class="input-group log container">
+            <p><div class="input-group log container">
+                <span class="input-group-addon" id="basic-addon13">Стать:</span>
+                <select class="selectpicker" id="sex">
+                    <option value="1">Чоловіча</option>
+                    <option value="2">Жіноча</option>
+                </select>
+                <!--<input type="text" id="studyForm" class="form-control" placeholder="денна/заочна" aria-describedby="basic-addon1">-->
+            </div>
+            <p><div class="input-group log container">
                 <span class="input-group-addon" id="basic-addon6">Курс:</span>
                 <select class="selectpicker" id="year">
                     <option>1</option>

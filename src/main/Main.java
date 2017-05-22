@@ -1,8 +1,8 @@
 package main;
 
-import dbService.DBException;
-import dbService.DBService;
 import dbService.dataSets.StudentsDataSet;
+import eservice.InquiryService;
+import eservice.InquiryWebSocket;
 import eservice.WebSocketInquiryServlet;
 import org.apache.log4j.PropertyConfigurator;
 import org.eclipse.jetty.server.Handler;
@@ -44,8 +44,11 @@ public class Main {
         } catch (DBException e) {
             e.printStackTrace();
         }*/
+//        new InquiryWebSocket(new InquiryService()).createInquiry(new StudentsDataSet("Юрій", "Бишляга", "Олегович", "02.11.1996", "566-45-82", "Телекоммунікації та радіотехніка", 1, 3, 1, 1, 1), 1, "Управління Пенсійного фонду України в Приморському районі м. Одеси");
 
         server.start();
         server.join();
+
+
     }
 }

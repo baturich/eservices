@@ -10,8 +10,10 @@ public class StudentImpl implements Student {
     private int iOKR; //1-баклавр, 2-спец., 3-магистр
     private int iFormaNavch; //1-дневная, 2-заочная
     private int iBudget; //1-бюджет, 2-контракт
+    private int iSex; //1-мужской, 2-женский
+    private String sEmail, sDestination;
 
-    public StudentImpl(String sFirstName, String sLastName, String sOtchestvo, String sBirthdate, String sMobilePhone, String sNapryam, int iNNI, int iYear, int iOKR, int iFormaNavch, int iBudget) {
+    public StudentImpl(String sFirstName, String sLastName, String sOtchestvo, String sBirthdate, String sMobilePhone, String sNapryam, int iNNI, int iYear, int iOKR, int iFormaNavch, int iBudget, String sEmail, int iSex, String sDestination) {
         this.sFirstName = sFirstName;
         this.sLastName = sLastName;
         this.sOtchestvo = sOtchestvo;
@@ -23,6 +25,9 @@ public class StudentImpl implements Student {
         this.iOKR = iOKR;
         this.iFormaNavch = iFormaNavch;
         this.iBudget = iBudget;
+        this.sEmail = sEmail;
+        this.iSex = iSex;
+        this.sDestination = sDestination;
     }
 
     @Override
@@ -39,6 +44,7 @@ public class StudentImpl implements Student {
                 ", iOKR=" + iOKR +
                 ", iFormaNavch=" + iFormaNavch +
                 ", iBudget=" + iBudget +
+                ", sEmail='" + sEmail + '\'' +
                 '}';
     }
 
@@ -95,5 +101,20 @@ public class StudentImpl implements Student {
     @Override
     public int getiBudget() {
         return iBudget;
+    }
+
+    @Override
+    public String getsEmail() {
+        return sEmail;
+    }
+
+    @Override
+    public int getiSex() {
+        return iSex;
+    }
+
+    @Override
+    public String getsDestination() {
+        return sDestination;
     }
 }

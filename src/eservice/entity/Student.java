@@ -23,4 +23,13 @@ public interface Student {
     int getiFormaNavch();
 
     int getiBudget();
+
+    String getsEmail();
+
+    String toString();
+
+    int getiSex();
+
+    String getsDestination();
+
 }
